@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            margin-left: 105px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            max-width: auto;
+        }
+
+        .table-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        form {
+            display: grid;
+            grid-gap: 10px;
+        }
+
+        form label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="date"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+        }
+
+        form input[type="checkbox"]:checked+.checkbox-custom::after {
+            opacity: 1;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        form button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+        }
+
+        input:invalid:focus {
+            border: 1px solid red;
+        }
+
+        .data-table {
+            width: auto;
+            table-layout: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .data-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="form-header">Registration Form</div>
+        <form id="user_form">
+            <label for="name">User Name:</label>
+            <input required type="text" id="name" name="name">
+
+            <label for="email">Email</label>
+            <input required type="email" id="email" name="email">
+
+            <label for="password">Password</label>
+            <input required type="password" id="password" name="password">
+
+            <label for="dob">Date of Birth</label>
+            <input required type="date" id="dob" name="dob">
+
+            <div class="checkbox-container">
+                <input required type="checkbox" id="checkbox" name="checkbox">
+                <label class="checkbox-label" for="checkbox">Accept terms and conditions</label>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="table-container">
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Dob</th>
+                        <th>Accepted terms?</th>
+                    </tr>
+                </thead>
+                <tbody id="user_data">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    const dobInput = document.getElementById('dob');
+    dob.addEventListener('input', () => checkAge(dobInput.value));
+
+    function checkAge(entry) {
+        const dob = new Date(entry);
+        const ageInMilliseconds = Date.now() - dob.getTime();
+        const ageDate = new Date(ageInMilliseconds);
+        const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+        if (age <= 18 || age >= 55) {
+            dobInput.setCustomValidity('Enter an age between 18 and 55');
+        } else {
+            dobInput.setCustomValidity('');
+        }
+    }
+</script>
+<script src="index.js"></script>
+
+</html>
