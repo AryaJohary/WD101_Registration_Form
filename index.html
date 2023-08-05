@@ -171,12 +171,11 @@
         const ageDate = new Date(ageInMilliseconds);
         const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
-        if (age <= 18 || age >= 55) {
+        if (age < 18 || age > 55) {
             dobInput.setCustomValidity('Enter an age between 18 and 55');
         } else {
             dobInput.setCustomValidity('');
         }
-        console.log(age);
     }
 </script>
 <script src="index.js"></script>
