@@ -1,3 +1,4 @@
+displayEntries();
 let userForm = document.getElementById('user_form');
 
 const retrieveEntries = () => {
