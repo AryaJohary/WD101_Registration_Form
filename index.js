@@ -1,5 +1,3 @@
-displayEntries();
-let userForm = document.getElementById('user_form');
 
 const retrieveEntries = () => {
     let entries = localStorage.getItem('user-entries');
@@ -29,8 +27,6 @@ const displayEntries = () => {
     details.innerHTML = tableEntries;
 }
 
-
-
 const saveUserForm = (event) => {
     event.preventDefault();
     const name = document.getElementById('name').value;
@@ -52,4 +48,3 @@ const saveUserForm = (event) => {
     localStorage.setItem('user-entries', JSON.stringify(userEntries));
     displayEntries();
 }
-userForm.addEventListener('submit',saveUserForm);
