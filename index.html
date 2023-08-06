@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<script src="index.js"></script>
 
 <head>
     <title>Registration Form</title>
@@ -67,7 +68,7 @@
             align-items: center;
         }
 
-        form input[type="checkbox"]:checked+.checkbox-custom::after {
+        form input[type="checkbox"]:checked {
             opacity: 1;
         }
 
@@ -131,7 +132,7 @@
             <input required type="password" id="password" name="password">
 
             <label for="dob">Date of Birth</label>
-            <input required type="date" id="dob" name="dob">
+            <input type="date" id="dob" name="dob">
 
             <div class="checkbox-container">
                 <input required type="checkbox" id="checkbox" name="checkbox">
@@ -144,7 +145,7 @@
 
     <div class="table-container">
         <div class="table-wrapper">
-            <table class="data-table">
+            <table onload=displayEntries(); class="data-table">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -160,6 +161,13 @@
             </table>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userForm = document.getElementById('user_form');
+            userForm.addEventListener('submit', saveUserForm);
+            displayEntries();
+        });
+    </script>
 </body>
 <script>
     const dobInput = document.getElementById('dob');
@@ -170,7 +178,7 @@
         const ageInMilliseconds = Date.now() - dob.getTime();
         const ageDate = new Date(ageInMilliseconds);
         const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-
+        console.log(age);
         if (age < 18 || age > 55) {
             dobInput.setCustomValidity('Enter an age between 18 and 55');
         } else {
@@ -178,6 +186,5 @@
         }
     }
 </script>
-<script src="index.js"></script>
 
 </html>
